@@ -4,6 +4,7 @@ import Dashboard from "../pages/admin/Dashboard";
 import Blank from "../pages/Blank";
 import PrivateRoute from "./privateRoute";
 import Products from "../pages/admin/Products";
+import AddProduct from "../pages/admin/AddProduct";
 
 const AdminRoutes = () => {
 
@@ -21,8 +22,13 @@ const AdminRoutes = () => {
                     </PrivateRoute>
                 }/>
                 <Route path="products" element={
-                    <PrivateRoute roles={['BUYER', 'SELLER']}>
+                    <PrivateRoute roles={['SELLER']}>
                         <Products />
+                    </PrivateRoute>
+                }/>
+                <Route path="add-product" element={
+                    <PrivateRoute roles={['SELLER']}>
+                        <AddProduct />
                     </PrivateRoute>
                 }/>
                 <Route path="customers" element={

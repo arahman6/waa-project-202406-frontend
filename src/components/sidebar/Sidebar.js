@@ -40,7 +40,7 @@ const Sidebar = () => {
     return (
         <div className='sidebar'>
             <div className="sidebar__logo">
-                <img src={images.logo} alt=""/>
+                <Link to={`/products`}><img src={images.logo} alt=""/></Link>
                 <div className="sidebar-close" onClick={closeSidebar}>
                     <i className='bx bx-x'></i>
                 </div>

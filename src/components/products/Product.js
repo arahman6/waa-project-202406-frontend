@@ -1,13 +1,13 @@
 import {Link} from "react-router-dom";
 
-const Product = () => {
+const Product = ({product}) => {
     return <div className={`col-3`}>
         <div className={`product_list`}>
-            <Link href={``}><img src={`images/products/1.png`}/></Link>
+            <Link to={`/product/${product.id}`}><img src={product.imageUrl}/></Link>
             <div className={`product_info`}>
-                <div>Lighting</div>
-                <h5 className={`product_name`}><Link href={``}>Awesome Lamp</Link></h5>
-                <p className={`product_price`}>$40</p>
+                <div>Category: {product.category}</div>
+                <h5 className={`product_name`}><Link to={`/product/${product.id}`}>{product.name}</Link></h5>
+                <p className={`product_price`}>Price: ${product.price}</p>
             </div>
         </div>
     </div>

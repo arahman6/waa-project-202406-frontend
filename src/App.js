@@ -5,12 +5,14 @@ import './app.css'
 import {BrowserRouter, Routes} from 'react-router-dom'
 import AdminRoutes from "./routes/adminRoutes";
 import PageRoutes from "./routes/pageRoutes";
+import Popup from "./components/Popup";
 
 function App() {
     return (
         <BrowserRouter>
             <AdminRoutes/>
             <PageRoutes/>
+            <Popup />
         </BrowserRouter>
     )
 }
