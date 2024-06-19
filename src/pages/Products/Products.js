@@ -5,6 +5,7 @@ import axios from "../../configs/axios";
 
 import products from "../../mockData/products.json";
 import "./products.css";
+import ProductFilter from "../../components/ProductFilter";
 
 const Products = () => {
 
@@ -23,7 +24,7 @@ const Products = () => {
         <section>
             <div className={`row`}>
                 <div className="col-3">
-
+                    <ProductFilter />
                 </div>
                 <div className="col-9">
                     <div className={`row`}>
