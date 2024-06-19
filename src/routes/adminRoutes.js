@@ -3,6 +3,7 @@ import {Route, Routes} from "react-router-dom";
 import Dashboard from "../pages/admin/Dashboard";
 import Blank from "../pages/Blank";
 import PrivateRoute from "./privateRoute";
+import Products from "../pages/admin/Products";
 
 const AdminRoutes = () => {
 
@@ -21,7 +22,7 @@ const AdminRoutes = () => {
                 }/>
                 <Route path="products" element={
                     <PrivateRoute roles={['BUYER', 'SELLER']}>
-                        <Blank />
+                        <Products />
                     </PrivateRoute>
                 }/>
                 <Route path="customers" element={

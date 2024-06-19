@@ -65,3 +65,26 @@ input::placeholder {
     font-size: 14px;
     opacity: 0.5 !important;
 }
+
+.action_icons i {
+    cursor: pointer;
+}
+
+.table_pagination {
+    text-align: center;
+}
+
+.table_pagination button {
+    padding: 4px 10px;
+    border: 1px solid lightblue;
+    background: white;
+    font-size: 14px;
+}
+
+.table_pagination button:hover {
+
+}
+
+a {
+    text-decoration: none;
+}
