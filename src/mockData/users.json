@@ -3,6 +3,7 @@
     "id": 1,
     "firstName": "John",
     "lastName": "Smith",
+    "email": "user1@test.com",
     "roles": [
       {
         "role": "ADMIN"
