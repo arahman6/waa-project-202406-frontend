@@ -1,0 +1,67 @@
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* vh stands for viewport height */
+}
+
+.login-form {
+    width: 400px;
+    max-width: 100%; /* adjust this value to control the form's width */
+}
+
+.register-form {
+    width: 100%;
+    max-width: 800px;
+     /* adjust this value to control the form's width */
+}
+
+.btn {
+    border: 1px solid #52c9ea;
+    color: #52c9ea;
+}
+
+a.forget_password {
+    color: #52c9ea;
+    font-size: 14px;
+}
+
+.btn:hover {
+    border: 1px solid #52c9ea;
+    color: #52c9ea;
+    background: transparent;
+}
+
+.header {
+    box-shadow: 0 4px 20px rgba(38, 38, 38, .1);
+}
+
+h5 {
+    color: black;
+}
+
+.product_list {
+    padding: 15px;
+}
+
+.input_error{
+    border: 1px solid #dc3545;
+}
+
+.error_text{
+    color: #dc3545;
+    font-size: 12px;
+}
+
+.have_account {
+    font-size: 12px;
+}
+
+input, label, select, option {
+    font-size: 14px;
+}
+
+input::placeholder {
+    font-size: 14px;
+    opacity: 0.5 !important;
+}
