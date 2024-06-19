@@ -26,11 +26,13 @@ const Products = () => {
 
                 </div>
                 <div className="col-9">
+                    <div className={`row`}>
                     {
                         products.map(product => {
                             return <Product product={product}/>
                         })
                     }
+                    </div>
                 </div>
             </div>
         </section>
