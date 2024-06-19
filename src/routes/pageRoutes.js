@@ -1,8 +1,8 @@
 import {Navigate, Route, Routes} from "react-router-dom";
 import Login from "../pages/Login";
-import Products from "../pages/Products";
+import Products from "../pages/Products/Products";
 import Register from "../pages/Register";
-import ProductDetails from "../pages/ProductDetails";
+import ProductDetails from "../pages/Products/ProductDetails";
 import Popup from "../components/Popup";
 
 const PageRoutes = () => {
