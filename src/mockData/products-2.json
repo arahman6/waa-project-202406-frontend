@@ -1,0 +1,257 @@
+[
+  {
+    "id": 1,
+    "name": "Acer Laptop",
+    "description": "High-performance laptop for gaming and work",
+    "price": 999.99,
+    "imageUrl": "images/products/acerlaptop.jpg",
+    "stockQuantity": 50,
+    "subCategory": {
+      "id": 1,
+      "name": "Laptop",
+      "description": "Notebook laptop 8 gb ram"
+    },
+    "review": [
+      {
+        "user": {
+          "id": 15,
+          "username": "alice_williams"
+        },
+        "rating": 5,
+        "comment": "Excellent laptop!",
+        "reviewDate": "2023-06-19T10:00:00"
+      },
+      {
+        "user": {
+          "id": 7,
+          "username": "dave_davis"
+        },
+        "rating": 4,
+        "comment": "Very good, but a bit expensive.",
+        "reviewDate": "2023-06-18T15:30:00"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Apple Watch",
+    "description": "Latest model smartphone with advanced features",
+    "price": 799.99,
+    "imageUrl": "images/products/applewatch.jpeg",
+    "stockQuantity": 100,
+    "subCategory": {
+      "id": 2,
+      "name": "Smartwatch",
+      "description": "Good Smart Watch"
+    },
+    "review": [
+      {
+        "user": {
+          "id": 8,
+          "username": "eva_evans"
+        },
+        "rating": 4,
+        "comment": "Great phone, but battery life could be better.",
+        "reviewDate": "2023-06-17T12:00:00"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Gucci Bag",
+    "description": "Excellent Condition guccibag",
+    "price": 199.99,
+    "imageUrl": "images/products/guccibag.jpg",
+    "stockQuantity": 200,
+    "subCategory": {
+      "id": 3,
+      "name": "Electronics",
+      "description": "Electronic devices"
+    },
+    "review": [
+      {
+        "user": {
+          "id": 11,
+          "username": "harry_hughes"
+        },
+        "rating": 5,
+        "comment": "Amazing quality!",
+        "reviewDate": "2023-06-16T09:45:00"
+      },
+      {
+        "user": {
+          "id": 13,
+          "username": "isla_ivers"
+        },
+        "rating": 3,
+        "comment": "Good, but not worth the price.",
+        "reviewDate": "2023-06-15T08:30:00"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Instant Pot",
+    "description": "7-in-1 electric pressure cooker",
+    "price": 89.99,
+    "imageUrl": "images/products/pot.jpg",
+    "stockQuantity": 120,
+    "subCategory": {
+      "id": 4,
+      "name": "Kitchen Appliances",
+      "description": "Modern kitchen appliances"
+    },
+    "review": [
+      {
+        "user": {
+          "id": 15,
+          "username": "alice_williams"
+        },
+        "rating": 5,
+        "comment": "Fantastic for quick meals!",
+        "reviewDate": "2023-06-14T10:00:00"
+      },
+      {
+        "user": {
+          "id": 7,
+          "username": "dave_davis"
+        },
+        "rating": 4,
+        "comment": "Very useful but takes some getting used to.",
+        "reviewDate": "2023-06-13T12:30:00"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Nike Running Shoes",
+    "description": "Comfortable and durable running shoes",
+    "price": 120.00,
+    "imageUrl": "images/products/nikeshoes.png",
+    "stockQuantity": 80,
+    "subCategory": {
+      "id": 5,
+      "name": "Apparel",
+      "description": "Sportswear and activewear"
+    },
+    "review": [
+      {
+        "user": {
+          "id": 13,
+          "username": "isla_ivers"
+        },
+        "rating": 5,
+        "comment": "Great for running!",
+        "reviewDate": "2023-06-12T09:45:00"
+      },
+      {
+        "user": {
+          "id": 15,
+          "username": "alice_williams"
+        },
+        "rating": 4,
+        "comment": "Very comfortable.",
+        "reviewDate": "2023-06-11T08:30:00"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "name": "KitchenAid Stand Mixer",
+    "description": "Versatile stand mixer for baking and cooking",
+    "price": 399.99,
+    "imageUrl": "images/products/mixer.jpg",
+    "stockQuantity": 60,
+    "subCategory": {
+      "id": 4,
+      "name": "Kitchen Appliances",
+      "description": "Modern kitchen appliances"
+    },
+    "review": [
+      {
+        "user": {
+          "id": 7,
+          "username": "dave_davis"
+        },
+        "rating": 5,
+        "comment": "A must-have for any baker!",
+        "reviewDate": "2023-06-10T11:00:00"
+      },
+      {
+        "user": {
+          "id": 15,
+          "username": "alice_williams"
+        },
+        "rating": 4,
+        "comment": "Very powerful but a bit heavy.",
+        "reviewDate": "2023-06-09T14:30:00"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Levi's Jeans",
+    "description": "Classic fit, comfortable jeans",
+    "price": 59.99,
+    "imageUrl": "images/products/levisjeans.jpg",
+    "stockQuantity": 150,
+    "subCategory": {
+      "id": 5,
+      "name": "Apparel",
+      "description": "Casual and comfortable clothing"
+    },
+    "review": [
+      {
+        "user": {
+          "id": 15,
+          "username": "alice_williams"
+        },
+        "rating": 5,
+        "comment": "Perfect fit and very comfortable.",
+        "reviewDate": "2023-06-08T16:00:00"
+      },
+      {
+        "user": {
+          "id": 7,
+          "username": "dave_davis"
+        },
+        "rating": 4,
+        "comment": "Good quality but slightly pricey.",
+        "reviewDate": "2023-06-07T10:30:00"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Blender",
+    "description": "High-speed blender for smoothies and more",
+    "price": 99.99,
+    "imageUrl": "images/products/blender.jpg",
+    "stockQuantity": 90,
+    "subCategory": {
+      "id": 4,
+      "name": "Kitchen Appliances",
+      "description": "Modern kitchen appliances"
+    },
+    "review": [
+      {
+        "user": {
+          "id": 4,
+          "username": "alice_smith"
+        },
+        "rating": 5,
+        "comment": "Blends everything perfectly!",
+        "reviewDate": "2023-06-06T10:00:00"
+      },
+      {
+        "user": {
+          "id": 7,
+          "username": "dave_davis"
+        },
+        "rating": 4,
+        "comment": "Great blender but a bit noisy.",
+        "reviewDate": "2023-06-05T11:30:00"
+      }
+    ]
+  }
+]
