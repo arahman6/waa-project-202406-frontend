@@ -26,7 +26,7 @@ const Header = () => {
             </div>
 
             <div className="col-4 text-end">
-                <span className={`p-2`}><Link to="/admin/dashboard">My Cart({cartItem.length})</Link></span>
+                <span className={`p-2`}><Link to="/cart">My Cart({cartItem.length})</Link></span>
                 {!isAuthenticated && <span className={`p-2`}>
                     <Link to="/login">Login</Link> / <Link to="/register">Register</Link>
                 </span>}

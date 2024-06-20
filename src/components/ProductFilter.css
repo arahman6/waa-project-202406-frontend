@@ -1,0 +1,49 @@
+/* ProductFilter.css */
+body {
+    font-family: Arial, sans-serif;
+}
+
+.filter-container {
+    width: 300px;
+    margin: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    height: 500px; /* Set a fixed height */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.filter-section {
+    margin-bottom: 20px;
+}
+
+.filter-section h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+.filter-section div {
+    margin-bottom: 5px;
+}
+
+.filter-section label {
+    margin-left: 5px;
+    font-size: 14px;
+    color: #555;
+}
+
+.price-range {
+    display: flex;
+    align-items: center;
+}
+
+.price-range input {
+    margin: 0 10px;
+    flex-grow: 1;
+}
+
+.price-range span {
+    font-weight: bold;
+    color: #555;
+}
