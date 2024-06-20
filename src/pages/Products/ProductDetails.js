@@ -12,7 +12,7 @@ const ProductDetails = () => {
     const dispatch = useDispatch();
     const products = useSelector(state => state.product?.products)
     const cart = useSelector(state => state?.cart || [])
-    const [cartQuantity, setCartQuantity] = useState(0);
+    const [cartQuantity, setCartQuantity] = useState(1);
 
     const [product, setProduct] = useState(null);
     useEffect(() => {
@@ -21,7 +21,9 @@ const ProductDetails = () => {
 
     const addToCart = () => {
         let cartItem = {
+            productID: product.id,
             name: product.name,
+            category: product.category,
             price: product.price,
             quantity: cartQuantity,
             imageUrl: product.imageUrl
@@ -45,7 +47,7 @@ const ProductDetails = () => {
                         <h5 className={`product_name`}>{product?.name}</h5>
                         <p>{product?.description}</p>
                         <p className={`product_price`}>Price: ${product?.price} <span>(In Stock)</span></p>
-                        <p className={`py-2`}>Quantity: <input defaultValue={0}
+                        <p className={`py-2`}>Quantity: <input value={cartQuantity}
                             onChange={ e => setCartQuantity(e.target.value)}
                             className={`form-control-sm`}
                             type={`number`}/></p>

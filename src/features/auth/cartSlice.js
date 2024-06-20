@@ -7,11 +7,29 @@ const cartSlice = createSlice({
     reducers: {
         setCart: (state, action) => {
             state.push(action.payload);
+        },
+        decrementQuantity: (state, action) => {
+            const existingItem = state.find(item => item.productID == action.payload);
+            if (existingItem) {
+                existingItem.quantity = parseInt(existingItem.quantity) - 1;
+            }
+        },
+        incrementQuantity: (state, action) => {
+            const existingItem = state.find(item => item.productID == action.payload);
+            if (existingItem) {
+                existingItem.quantity = parseInt(existingItem.quantity) + 1;
+            }
+        },
+        removeItem: (state, action) => {
+            return state.filter(item => item.productID != action.payload);
         }
     }
 });
 
 export default cartSlice.reducer;
 export const {
-    setCart
+    setCart,
+    decrementQuantity,
+    incrementQuantity,
+    removeItem
 } = cartSlice.actions;

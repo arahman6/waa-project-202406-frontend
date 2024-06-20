@@ -92,3 +92,11 @@ a {
 .product_review {
     border: 1px solid lightblue;
 }
+
+p > a {
+   color: darkblue;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
