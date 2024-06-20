@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import ProductTable from "../../components/ProductTable";
+import ListTable from "../../components/ListTable";
 import {Link} from "react-router-dom";
 
 const Orders = () => {
@@ -8,7 +8,7 @@ const Orders = () => {
 
     return <div className="row">
         <div className="col-12">
-            <ProductTable/>
+            <ListTable/>
         </div>
     </div>
 }

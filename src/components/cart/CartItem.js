@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {decrementQuantity, incrementQuantity, removeItem} from "../../features/auth/cartSlice";
+import {decrementQuantity, incrementQuantity, removeItem} from "../../features/cartSlice";
 
 const CartItem = ({cart}) => {
     const dispatch = useDispatch();
@@ -38,10 +38,10 @@ const CartItem = ({cart}) => {
             </div>
         </div>
         <div className="col-2">
-            ${cart.price}
+            ${cart.price.toFixed(2)}
         </div>
         <div className="col-2">
-            ${cart.price * cart.quantity}
+            ${(cart.price * cart.quantity).toFixed(2)}
         </div>
         <div className={`col-1`}>
             <i onClick={() => removeCartItem(cart.productID)}

@@ -5,6 +5,8 @@ import Blank from "../pages/Blank";
 import PrivateRoute from "./privateRoute";
 import Products from "../pages/admin/Products";
 import AddProduct from "../pages/admin/AddProduct";
+import Users from "../pages/admin/Users";
+import Reviews from "../pages/admin/Reviews";
 
 const AdminRoutes = () => {
 
@@ -22,7 +24,7 @@ const AdminRoutes = () => {
                     </PrivateRoute>
                 }/>
                 <Route path="products" element={
-                    <PrivateRoute roles={['SELLER']}>
+                    <PrivateRoute roles={['SELLER', 'ADMIN']}>
                         <Products />
                     </PrivateRoute>
                 }/>
@@ -39,6 +41,16 @@ const AdminRoutes = () => {
                 <Route path="settings" element={
                     <PrivateRoute roles={['ADMIN']}>
                         <Blank />
+                    </PrivateRoute>
+                }/>
+                <Route path="users" element={
+                    <PrivateRoute roles={['ADMIN', 'SELLER']}>
+                        <Users />
+                    </PrivateRoute>
+                }/>
+                <Route path="reviews" element={
+                    <PrivateRoute roles={['ADMIN']}>
+                        <Reviews />
                     </PrivateRoute>
                 }/>
             </Route>

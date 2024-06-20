@@ -4,7 +4,7 @@ import {Link, useLocation, useNavigate} from 'react-router-dom'
 import {images} from '../../constants'
 import sidebarNav from '../../configs/sidebarNav'
 import {useDispatch, useSelector} from "react-redux";
-import {logout} from "../../features/auth/authSlice";
+import {logout} from "../../features/authSlice";
 
 const Sidebar = () => {
     const [activeIndex, setActiveIndex] = useState(0)
@@ -24,13 +24,13 @@ const Sidebar = () => {
         setActiveIndex(curPath.length === 0 ? 0 : activeItem)
     }, [location])
 
-    const closeSidebar = () => {
-        document.querySelector('.main__content').style.transform = 'scale(1) translateX(0)'
-        setTimeout(() => {
-            document.body.classList.remove('sidebar-open')
-            document.querySelector('.main__content').style = ''
-        }, 500);
-    }
+    // const closeSidebar = () => {
+    //     document.querySelector('.main__content').style.transform = 'scale(1) translateX(0)'
+    //     setTimeout(() => {
+    //         document.body.classList.remove('sidebar-open')
+    //         document.querySelector('.main__content').style = ''
+    //     }, 500);
+    // }
 
     const logoutHandler = () => {
         dispatch(logout());
@@ -41,19 +41,18 @@ const Sidebar = () => {
         <div className='sidebar'>
             <div className="sidebar__logo">
                 <Link to={`/products`}><img src={images.logo} alt=""/></Link>
-                <div className="sidebar-close" onClick={closeSidebar}>
+                <div className="sidebar-close">
                     <i className='bx bx-x'></i>
                 </div>
             </div>
             <div className="sidebar__menu">
                 {
                     sidebarNav.map((nav, index) => {
-                        if (roleRoutes[user?.roles[0]?.role].includes(nav.link.split("/")[2])) {
+                        if (roleRoutes[user?.roles[0]?.role]?.includes(nav.link.split("/")[2])) {
                             return <Link
                                 to={nav.link}
                                 key={`nav-${index}`}
-                                className={`sidebar__menu__item ${activeIndex === index && 'active'}`}
-                                onClick={closeSidebar}>
+                                className={`sidebar__menu__item ${activeIndex === index && 'active'}`}>
                                 <div className="sidebar__menu__item__icon">
                                     {nav.icon}
                                 </div>

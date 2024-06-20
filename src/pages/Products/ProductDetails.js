@@ -2,9 +2,9 @@ import {Link, useParams} from "react-router-dom";
 import Header from "../../components/header/Header";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
-import {setProduct} from "../../features/auth/productSlice";
+import {setProduct} from "../../features/productSlice";
 import StarRating from "../../components/products/StarRating";
-import {setCart} from "../../features/auth/cartSlice";
+import {decrementQuantity, incrementQuantity, setCart} from "../../features/cartSlice";
 import {toast} from "react-toastify";
 
 const ProductDetails = () => {
@@ -28,7 +28,14 @@ const ProductDetails = () => {
             quantity: cartQuantity,
             imageUrl: product.imageUrl
         }
-        dispatch(setCart(cartItem));
+
+        // If the product is exist, then only update the quantity
+        if (cart.find(item => item.productID == product.id)) {
+            dispatch(incrementQuantity(product.id));
+        } else {
+            dispatch(setCart(cartItem));
+        }
+
         toast.success("Added to cart")
     }
 
@@ -48,12 +55,13 @@ const ProductDetails = () => {
                         <p>{product?.description}</p>
                         <p className={`product_price`}>Price: ${product?.price} <span>(In Stock)</span></p>
                         <p className={`py-2`}>Quantity: <input value={cartQuantity}
-                            onChange={ e => setCartQuantity(e.target.value)}
-                            className={`form-control-sm`}
-                            type={`number`}/></p>
+                                                               onChange={e => setCartQuantity(e.target.value)}
+                                                               className={`form-control-sm`}
+                                                               type={`number`}/></p>
                         <button
                             onClick={addToCart}
-                            className={`btn btn-outline-secondary`}>Add to cart</button>
+                            className={`btn btn-outline-secondary`}>Add to cart
+                        </button>
                     </div>
                 </div>
                 <div className={`col-12`}>

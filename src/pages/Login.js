@@ -1,5 +1,5 @@
 import {useDispatch} from "react-redux";
-import {loginSuccess} from "../features/auth/authSlice";
+import {loginSuccess} from "../features/authSlice";
 import {Link, useNavigate} from "react-router-dom";
 import {useState} from "react";
 import axios from "../configs/axios";

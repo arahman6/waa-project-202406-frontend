@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import ProductTable from "../../components/ProductTable";
+import ListTable from "../../components/ListTable";
 
 const AddProduct = () => {
 

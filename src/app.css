@@ -100,3 +100,15 @@ p > a {
 .cursor-pointer {
     cursor: pointer;
 }
+
+table {
+    font-size: 15px;
+}
+
+.confirm-box button {
+    border: 1px solid #2388a2;
+    color: #2388a2;
+    background: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+}

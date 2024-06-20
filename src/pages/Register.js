@@ -2,7 +2,8 @@ import {useDispatch} from "react-redux";
 import {Link, useNavigate} from "react-router-dom";
 import {useState} from "react";
 import axios from "../configs/axios";
-import {showSuccess} from "../features/auth/notificationSlice";
+import {showSuccess} from "../features/notificationSlice";
+import {toast} from "react-toastify";
 
 const Register = () => {
 
@@ -101,7 +102,8 @@ const Register = () => {
             firstName: form.firstName,
             lastName: form.lastName,
             email: form.email,
-            phone: form.email,
+            username: form.email,
+            phone: form.phone,
             password: form.password,
             address: {
                 street: form.street,
@@ -118,7 +120,7 @@ const Register = () => {
         axios.post("/users", regData)
             .then(res => {
                 navigate("/login");
-                dispatch(showSuccess("Successfully registered!"))
+                toast.success("Successfully registered, please login!");
             })
             .catch(err => {
                 console.log(err);

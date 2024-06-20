@@ -13,11 +13,11 @@ const CartSummery = ({cart}) => {
         <h4 className={`py-3`}>Cart Summary</h4>
         <div className="row mb-2">
             <div className="col-6">Subtotal</div>
-            <div className="col-6">${subTotal}</div>
+            <div className="col-6">${subTotal.toFixed(2)}</div>
         </div>
         <div className="row mb-2">
             <div className="col-6">Shipping</div>
-            <div className="col-6">{shippingCharge}</div>
+            <div className="col-6">{shippingCharge.toFixed(2)}</div>
         </div>
         <div className="row mb-2">
             <div className="col-12">
@@ -26,7 +26,7 @@ const CartSummery = ({cart}) => {
         </div>
         <div className="row mb-2">
             <div className="col-6">Total</div>
-            <div className="col-6">${subTotal + shippingCharge}</div>
+            <div className="col-6">${(subTotal + shippingCharge).toFixed(2)}</div>
         </div>
         { cart.length > 0 && <Link to={`/checkout`} className="btn btn-outline-secondary mt-3">Proceed to Checkout</Link> }
     </div>
