@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const ProductTable = () => {
     const [currentPage, setCurrentPage] = useState(1);
-    const [itemsPerPage] = useState(20); // Number of items per page
+    const [itemsPerPage] = useState(10); // Number of items per page
 
     const data = [
         {id: 1, name: "Apple Macbook Pro", brand: "Apple", category: "Electronics", price: 1100, status: "Pending", addedBy: "John Smith"},
