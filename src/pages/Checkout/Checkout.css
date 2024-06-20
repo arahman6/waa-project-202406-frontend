@@ -1,0 +1,38 @@
+.container-fluid {
+    padding: 20px;
+}
+
+h2, h3 {
+    margin-top: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.payment-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+.form-check {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.btn-primary {
+    background-color: gray; /* Gray button color */
+    color: white;
+    font-weight: bold; /* Bold text */
+}
+
+.btn-primary:hover {
+    background-color: orange; /* Hover color */
+    color: white;
+}
+
+.text-right {
+    text-align: right;
+}
