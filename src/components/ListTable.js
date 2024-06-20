@@ -36,11 +36,24 @@ const ListTable = ({cols = [], data, perPage = 10, editHandler, deleteHandler}) 
                         <tr key={item.id}>
                             {
                                 cols.map(col => {
+                                    if (col == "subCategory") {
+                                        return <td>{item[col]?.name}</td>
+                                    }
+                                    if (col == "category") {
+                                        return <td>{item[col]?.category?.name}</td>
+                                    }
                                     if (col == "address") {
-                                        return <td>{item[col].street + ", " + item[col].city + ", " + item[col].state + ", " + item[col].country}</td>
+                                        let street = item[col]?.street && item[col].street || '';
+                                        street = street !== '' && street + ', '
+                                        let city = item[col]?.city && item[col]?.city || '';
+                                        city = city !== '' && city + ', '
+                                        let state = item[col]?.state && item[col]?.state || '';
+                                        state = state !== '' && state + ', '
+                                        let country = item[col]?.country  && item[col]?.country || '';
+                                        return <td>{street + city + state + country}</td>
                                     }
                                     if (col == "roles") {
-                                        return <td>{item[col][0].role}</td>
+                                        return <td>{item[col][0]?.role}</td>
                                     }
                                     return <td>{item[col]}</td>
                                 })

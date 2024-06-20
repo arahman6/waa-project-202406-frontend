@@ -2,7 +2,7 @@ import {Link, useParams} from "react-router-dom";
 import Header from "../../components/header/Header";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
-import {setProduct} from "../../features/productSlice";
+import {setProduct} from "../../features/productsSlice";
 import StarRating from "../../components/products/StarRating";
 import {decrementQuantity, incrementQuantity, setCart} from "../../features/cartSlice";
 import {toast} from "react-toastify";
@@ -10,7 +10,7 @@ import {toast} from "react-toastify";
 const ProductDetails = () => {
     const {id} = useParams();
     const dispatch = useDispatch();
-    const products = useSelector(state => state.product?.products)
+    const products = useSelector(state => state?.products)
     const cart = useSelector(state => state?.cart || [])
     const [cartQuantity, setCartQuantity] = useState(1);
 

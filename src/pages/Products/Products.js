@@ -5,7 +5,7 @@ import products from "../../mockData/products.json";
 import "./products.css";
 import ProductFilter from "../../components/ProductFilter";
 import {useDispatch} from "react-redux";
-import {setProduct} from "../../features/productSlice";
+import {setProduct} from "../../features/productsSlice";
 
 const Products = () => {
     const dispatch = useDispatch();

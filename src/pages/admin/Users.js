@@ -9,7 +9,7 @@ import {confirm} from "react-confirm-box";
 const Users = () => {
 
     const dispatch = useDispatch();
-    const data = useSelector(state => state?.users?.users || []);
+    const data = useSelector(state => state?.users || []);
 
     useEffect(() => {
         axios.get("users")
@@ -31,8 +31,6 @@ const Users = () => {
                 .catch(err => console.log(err));
             return;
         }
-
-        console.log(id);
     }
 
     return <div className="row">
