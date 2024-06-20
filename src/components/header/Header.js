@@ -4,6 +4,7 @@ import {logout} from "../../features/auth/authSlice";
 
 const Header = () => {
     const dispatch = useDispatch();
+    const cartItem = useSelector(state => state?.cart || []);
     const navigate = useNavigate();
     const {isAuthenticated} = useSelector(state => state.auth)
     const logoutHandler = () => {
@@ -13,9 +14,9 @@ const Header = () => {
     return <header className={`box mb-2`}>
         <div className="row">
             <div className="col-3">
-                <Link to="">Logo</Link>
+                <Link to={`/products`}>Logo</Link>
             </div>
-            <div className="col-6">
+            <div className="col-5">
                 <div class="input-group">
                     <input type="text"
                            className={`form-control`} placeholder={`Search product...`}
@@ -24,14 +25,15 @@ const Header = () => {
                 </div>
             </div>
 
-            <div className="col-3 text-end">
-                {!isAuthenticated && <div>
+            <div className="col-4 text-end">
+                <span className={`p-2`}><Link to="/admin/dashboard">My Cart({cartItem.length})</Link></span>
+                {!isAuthenticated && <span className={`p-2`}>
                     <Link to="/login">Login</Link> / <Link to="/register">Register</Link>
-                </div>}
-                {isAuthenticated && <div>
+                </span>}
+                {isAuthenticated && <span className={`p-2`}>
                     <Link to="/admin/dashboard">My Account</Link>
                     <button className={`btn btn-outline-primary mx-4`} onClick={logoutHandler}>Logout</button>
-                </div>}
+                </span>}
             </div>
         </div>
     </header>

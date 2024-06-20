@@ -6,12 +6,15 @@ import axios from "../../configs/axios";
 import products from "../../mockData/products.json";
 import "./products.css";
 import ProductFilter from "../../components/ProductFilter";
+import {useDispatch} from "react-redux";
+import {setProduct} from "../../features/auth/productSlice";
 
 const Products = () => {
 
+    const dispatch = useDispatch();
+
     useEffect(() => {
-
-
+        dispatch(setProduct(products))
     }, []);
 
     return <div className="container-fluid my-2">

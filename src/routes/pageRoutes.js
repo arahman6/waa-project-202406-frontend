@@ -11,6 +11,7 @@ const PageRoutes = () => {
         <Route path={"/"} element={<Navigate to={`/products`}/>}/>
         <Route path={"/products"} element={<Products/>}/>
         <Route path={`/product/:id`} element={<ProductDetails />}/>
+        <Route path={`/cart`} element={<ProductDetails />}/>
         <Route path={"/login"} element={<Login/>}/>
         <Route path={"/register"} element={<Register/>}/>
     </Routes>

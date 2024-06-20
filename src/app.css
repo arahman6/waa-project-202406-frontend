@@ -88,3 +88,7 @@ input::placeholder {
 a {
     text-decoration: none;
 }
+
+.product_review {
+    border: 1px solid lightblue;
+}
