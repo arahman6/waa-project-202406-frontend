@@ -113,3 +113,9 @@ table {
     border-radius: 4px;
     font-size: 14px;
 }
+
+.spinner_container {
+    width: 100%;
+    position: absolute;
+    text-align: center;
+}

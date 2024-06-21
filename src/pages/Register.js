@@ -2,7 +2,7 @@ import {useDispatch} from "react-redux";
 import {Link, useNavigate} from "react-router-dom";
 import {useState} from "react";
 import axios from "../configs/axios";
-import {showSuccess} from "../features/notificationSlice";
+import {showSuccess} from "../features/spinnerSlice";
 import {toast} from "react-toastify";
 
 const Register = () => {

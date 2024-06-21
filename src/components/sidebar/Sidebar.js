@@ -12,10 +12,11 @@ const Sidebar = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const {user} = useSelector((state) => state.auth);
+    const authUserRole = user?.roles[0]?.role;
     const roleRoutes = {
         ADMIN: ["dashboard", "users", "reviews", "settings"],
         SELLER: ["dashboard", "products", "orders"],
-        BUYER: ["dashboard", "orders"],
+        BUYER: ["orders"],
     }
 
     useEffect(() => {
@@ -48,7 +49,8 @@ const Sidebar = () => {
             <div className="sidebar__menu">
                 {
                     sidebarNav.map((nav, index) => {
-                        if (roleRoutes[user?.roles[0]?.role]?.includes(nav.link.split("/")[2])) {
+                        const pathName = nav.link.split("/")[2].trim();
+                        if (roleRoutes[authUserRole]?.includes(pathName)) {
                             return <Link
                                 to={nav.link}
                                 key={`nav-${index}`}
@@ -57,7 +59,7 @@ const Sidebar = () => {
                                     {nav.icon}
                                 </div>
                                 <div className="sidebar__menu__item__txt">
-                                    {nav.text}
+                                    {(authUserRole === "BUYER" && pathName === 'orders') ? "My Orders" : nav.text}
                                 </div>
                             </Link>
                         }

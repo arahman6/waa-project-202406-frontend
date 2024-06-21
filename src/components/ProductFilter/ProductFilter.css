@@ -9,7 +9,7 @@ body {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 8px;
-    height: 500px; /* Set a fixed height */
+    height: 650px; /* Set a fixed height */
     overflow-y: auto; /* Enable vertical scrolling */
 }
 

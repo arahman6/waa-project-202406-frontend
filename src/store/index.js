@@ -1,17 +1,17 @@
 import {configureStore} from "@reduxjs/toolkit";
 import authSlice from "../features/authSlice";
-import notificationSlice from "../features/notificationSlice";
 import cartSlice from "../features/cartSlice";
 import usersSlice from "../features/usersSlice";
 import reviewsSlice from "../features/reviewsSlice";
 import productsSlice from "../features/productsSlice";
 import categorySlice from "../features/categorySlice";
 import ordersSlice from "../features/ordersSlice";
+import spinnerSlice from "../features/spinnerSlice";
 
 const store = configureStore({
     reducer: {
         auth: authSlice,
-        notification: notificationSlice,
+        spinner: spinnerSlice,
         products: productsSlice,
         cart: cartSlice,
         users: usersSlice,

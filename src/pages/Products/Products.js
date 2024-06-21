@@ -3,10 +3,11 @@ import Product from "../../components/products/Product";
 import {useEffect} from "react";
 //import products from "../../mockData/products.json";
 import "./products.css";
-import ProductFilter from "../../components/ProductFilter";
+import ProductFilter from "../../components/ProductFilter/ProductFilter";
 import {useDispatch, useSelector} from "react-redux";
 import {setProduct} from "../../features/productsSlice";
 import axios from "../../configs/axios";
+import SpinnerContainer from "../../components/SpinnerContainer";
 
 const Products = () => {
     const dispatch = useDispatch();
@@ -15,7 +16,6 @@ const Products = () => {
         axios.get("products")
             .then(res => dispatch(setProduct(res.data)))
             .catch(err => console.log(err))
-        //dispatch(setProduct(products))
     }, []);
 
     return <div className="container-fluid my-2">
@@ -33,6 +33,8 @@ const Products = () => {
                             elegance to your life</p>
                     </section>
                     <div className={`row`}>
+                        {/*<SpinnerContainer />*/}
+                        {products.length === 0 && <p className={`text-center p-5`}>{`No record found`}</p>}
                         {
                             products.map(product => {
                                 return <Product product={product}/>
