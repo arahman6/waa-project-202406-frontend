@@ -18,7 +18,7 @@ const CartItem = ({cart}) => {
 
     return <div className="row my-cart-item">
         <div className="col-2">
-            <img src={`/${cart.imageUrl}`} className="img-fluid product-image"/>
+            <img src={`/images/products/${cart.imageUrl}`} className="img-fluid product-image"/>
         </div>
         <div className="col-3">
             <p className="product-name">{cart.name}</p>

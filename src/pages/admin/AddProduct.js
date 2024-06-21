@@ -1,29 +1,49 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import ListTable from "../../components/ListTable";
+import axios from "../../configs/axios";
+import {useDispatch, useSelector} from "react-redux";
+import {setCategory} from "../../features/categorySlice";
 
 const AddProduct = () => {
 
+    const dispatch = useDispatch();
+    const categoryList = useSelector(state => state.categories);
+    const subCategories = [];
+
+    useEffect(() => {
+        axios.get("categories")
+            .then(res => dispatch(setCategory(res.data)))
+            .catch(err => console.log(err))
+    }, []);
+
     const [formData, setFormData] = useState({
         name: '',
+        brand: '',
         description: '',
         price: '',
         image: null,
-        quantity: '',
+        stockQuantity: '',
         category: '',
         subcategory: '',
+        sizes: null,
+        materials: null
     });
 
     const [errors, setErrors] = useState({});
-
-    const categoryList = ['Electronics', 'Books', 'Clothing'];
     const subcategoryList = {
         Electronics: ['Phones', 'Laptops', 'Accessories'],
         Books: ['Fiction', 'Non-Fiction', 'Comics'],
         Clothing: ['Men', 'Women', 'Kids'],
     };
+    const selectCategoryHandler = e => {
+        setFormData({
+            ...formData,
+            category: e.target.value,
+        });
+    }
 
     const handleChange = (e) => {
-        const { name, value, files } = e.target;
+        const {name, value, files} = e.target;
         setFormData({
             ...formData,
             [name]: files ? files[0] : value,
@@ -89,7 +109,7 @@ const AddProduct = () => {
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
-                        
+
                     />
                 </div>
 
@@ -101,7 +121,7 @@ const AddProduct = () => {
                         name="description"
                         value={formData.description}
                         onChange={handleChange}
-                        
+
                     ></textarea>
                 </div>
 
@@ -114,7 +134,7 @@ const AddProduct = () => {
                         name="price"
                         value={formData.price}
                         onChange={handleChange}
-                        
+
                     />
                 </div>
 
@@ -126,20 +146,20 @@ const AddProduct = () => {
                         className={`form-control ${errors?.field === "image" && " input_error"}`}
                         name="image"
                         onChange={handleChange}
-                        
+
                     />
                 </div>
 
                 <div className="form-group mb-3">
-                    <label htmlFor="quantity">Quantity:</label>
+                    <label htmlFor="quantity">Stock Quantity:</label>
                     <input
                         type="number"
-                        id="quantity"
-                        className={`form-control ${errors?.field === "quantity" && " input_error"}`}
-                        name="quantity"
-                        value={formData.quantity}
+                        id="stockQuantity"
+                        className={`form-control ${errors?.field === "stockQuantity" && " input_error"}`}
+                        name="stockQuantity"
+                        value={formData.stockQuantity}
                         onChange={handleChange}
-                        
+
                     />
                 </div>
 
@@ -150,12 +170,12 @@ const AddProduct = () => {
                         className={`form-control ${errors?.field === "category" && " input_error"}`}
                         name="category"
                         value={formData.category}
-                        onChange={handleChange}
-                        >
+                        onChange={ e => selectCategoryHandler(e)}
+                    >
                         <option value="">Select Category</option>
                         {categoryList.map((category) => (
-                            <option key={category} value={category}>
-                                {category}
+                            <option key={category.name} value={category.name}>
+                                {category.name}
                             </option>
                         ))}
                     </select>
@@ -169,13 +189,12 @@ const AddProduct = () => {
                         name="subcategory"
                         value={formData.subcategory}
                         onChange={handleChange}
-                        
+
                     >
                         <option value="">Select Subcategory</option>
-                        {formData.category &&
-                            subcategoryList[formData.category].map((subcategory) => (
+                        {subCategories?.map((subcategory) => (
                                 <option key={subcategory} value={subcategory}>
-                                    {subcategory}
+                                    {subcategory.name}
                                 </option>
                             ))}
                     </select>

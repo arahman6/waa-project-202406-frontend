@@ -26,7 +26,8 @@ const ProductDetails = () => {
             category: product.category,
             price: product.price,
             quantity: cartQuantity,
-            imageUrl: product.imageUrl
+            imageUrl: product.imageUrl,
+            stock_quantity: product.stock_quantity
         }
 
         // If the product is exist, then only update the quantity
@@ -45,7 +46,7 @@ const ProductDetails = () => {
         <div className={`product_details py-3`}>
             <div className={`row`}>
                 <div className={`col-4`}>
-                    <img src={`/` + product?.imageUrl}/>
+                    <img src={`/images/products/` + product?.imageUrl}/>
                 </div>
                 <div className={`col-8`}>
                     <div className={`product_info`}>

@@ -1,41 +1,103 @@
 import Header from "../../components/header/Header";
 import React from "react";
 import "./Checkout.css";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import axios from "../../configs/axios";
+import {toast} from "react-toastify";
+import {removeAll} from "../../features/cartSlice";
 
 const Checkout = () => {
+    const authUser = useSelector(state => state?.auth)
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const cartItems = useSelector(state => state.cart)
+    const placeOrderHandler = () => {
+        if (!authUser?.isAuthenticated) {
+            navigate("/login")
+            return false;
+        }
+
+        let orderData = []
+
+        cartItems.map( item => {
+            let tmp = {};
+            tmp.quantity = item.quantity;
+            tmp.price = item.quantity;
+            tmp.product = {
+                id: item.productID,
+                name: item.name,
+                description: item.description,
+                price : item.price,
+                image_url : item.imageUrl,
+                stock_quantity : item.stock_quantity,
+                purchased : true,
+                user: {
+                    id: authUser?.user?.id
+                }
+            }
+
+            orderData.push(tmp);
+
+        } );
+
+        axios.post(`buyer/${authUser?.user?.id}/cart/makeOrder`, orderData)
+            .then( res => {
+                dispatch(removeAll());
+                toast.success("Order successfully placed!")
+                navigate("/admin/orders");
+        }).catch( err => console.log(err));
+    }
+
+    const firstName = authUser?.user?.firstName || '';
+    const lastName = authUser?.user?.lastName || '';
+
     return (
         <div className="container-fluid my-2">
             <Header/>
             <div className="row">
-                <p className={`text-center p-3`}>Please <Link to={`/login`}>login </Link> before placing order.</p>
+                { !authUser?.isAuthenticated && <p className={`text-center p-3`}>Please <Link to={`/login`}>login </Link> before placing order.</p> }
                 <div className="col-md-6">
                     <div className={`p-3 mt-3 box`}>
                         <h4>Billing Address/ Shipping Address</h4>
                         <form>
                             <div className="form-group">
                                 <label htmlFor="fullName">Full Name</label>
-                                <input type="text" className="form-control" id="fullName" name="fullName" required/>
+                                <input
+                                    value={firstName + " " + lastName}
+                                    type="text"
+                                    className="form-control"
+                                    id="fullName" name="fullName" required/>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="address">Address</label>
-                                <input type="text" className="form-control" id="address" name="address" required/>
+                                <label htmlFor="address">Street</label>
+                                <input value={authUser?.user?.address?.street} type="text" className="form-control" id="street" name="street" required/>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="city">City</label>
-                                <input type="text" className="form-control" id="city" name="city" required/>
+                                <input type="text"
+                                       value={authUser?.user?.address?.city}
+                                       className="form-control" id="city"
+                                       name="city" required/>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="state">State</label>
-                                <input type="text" className="form-control" id="state" name="state" required/>
+                                <input
+                                    value={authUser?.user?.address?.state}
+                                    type="text" className="form-control" id="state" name="state" required/>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="zip">Zip Code</label>
-                                <input type="text" className="form-control" id="zip" name="zip" required/>
+                                <label htmlFor="zip">Postal Code</label>
+                                <input value={authUser?.user?.address?.postalCode} type="text" className="form-control" id="zip" name="postalCode" required/>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="country">Country</label>
-                                <input type="text" className="form-control" id="country" name="country" required/>
+                                <input
+                                    value={authUser?.user?.address?.country}
+                                    type="text"
+                                    className="form-control"
+                                    id="country"
+                                    name="country" required/>
                             </div>
                         </form>
                     </div>
@@ -79,7 +141,10 @@ const Checkout = () => {
                                 <input type="text" className="form-control" id="cvv" name="cvv" required/>
                             </div>
                             <div className="form-group text-right">
-                                <button type="submit" className="btn btn-outline-primary mt-3">Place Order</button>
+                                <button
+                                    onClick={() => placeOrderHandler()}
+                                    type="submit"
+                                    className="btn btn-outline-primary mt-3">Place Order</button>
                             </div>
                         </form>
                     </div>

@@ -1,16 +1,21 @@
 import Header from "../../components/header/Header";
 import Product from "../../components/products/Product";
 import {useEffect} from "react";
-import products from "../../mockData/products.json";
+//import products from "../../mockData/products.json";
 import "./products.css";
 import ProductFilter from "../../components/ProductFilter";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {setProduct} from "../../features/productsSlice";
+import axios from "../../configs/axios";
 
 const Products = () => {
     const dispatch = useDispatch();
+    const products = useSelector(state => state?.products || [])
     useEffect(() => {
-        dispatch(setProduct(products))
+        axios.get("products")
+            .then(res => dispatch(setProduct(res.data)))
+            .catch(err => console.log(err))
+        //dispatch(setProduct(products))
     }, []);
 
     return <div className="container-fluid my-2">
