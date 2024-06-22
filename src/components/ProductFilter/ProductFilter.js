@@ -9,8 +9,8 @@ import {setProduct} from "../../features/productsSlice";
 const ProductFilter = () => {
 
     const [cats, setCats] = useState([])
-    const[minPrice, setMinPrice] = useState(0);
-    const[price, setPrice] = useState({
+    const [minPrice, setMinPrice] = useState(0);
+    const [price, setPrice] = useState({
         minPrice: 0,
         maxPrice: 5000
     });
@@ -27,6 +27,23 @@ const ProductFilter = () => {
 
     }
 
+    const othersHandler = e => {
+        axios.get('products/filter', {
+            params: {
+                [e.target.name]: e.target.checked === true ? e.target.value.toUpperCase() : ''
+            },
+            paramsSerializer: params => {
+                return qs.stringify(params)
+            }
+        }).then(res => {
+            console.log(res.data);
+            dispatch(setProduct(res.data));
+        }).catch( err => {
+            console.log(err);
+            dispatch(setProduct([]));
+        })
+    }
+
     const filterByPrice = e => {
         setPrice({...price, [e.target.name]: e.target.value})
         axios.get('products/filter', {
@@ -40,28 +57,37 @@ const ProductFilter = () => {
         }).then(res => {
             console.log(res.data);
             dispatch(setProduct(res.data));
+        }).catch( err => {
+            console.log(err);
+            dispatch(setProduct([]));
         })
     }
-
-
-    console.log(price);
 
     return (
         <div className="filter-container">
             <div className="filter-section">
                 <h3>Categories</h3>
                 {
-                    categories.length > 0 && categories.map(cat => {
-                        if (!cat.name) {
-                            return null;
-                        }
+                    [
+                        "ELECTRONICS",
+                        "CLOTHING",
+                        "HOME_APPLIANCES",
+                        "BOOKS",
+                        "TOYS",
+                        "SPORTS",
+                        "HEALTH",
+                        "BEAUTY",
+                        "AUTOMOTIVE",
+                        "GARDEN"
+                    ].map(cat => {
                         return <div>
                             <input
-                                value={cat?.name}
-                                onClick={e => filterByCat(e)}
-                                type="checkbox"
-                                id={`${cat?.name}`}/>
-                            <label htmlFor={`${cat.name}`}>{`${cat?.name}`}</label>
+                                id={cat}
+                                name={`categories`}
+                                value={cat}
+                                onClick={e => othersHandler(e)}
+                                type="checkbox" />
+                            <label htmlFor={`${cat}`}>{`${cat}`}</label>
                         </div>
                     })
                 }
@@ -72,35 +98,76 @@ const ProductFilter = () => {
                 <h3>Price Range</h3>
                 <div className="price-range">
                     <span>$0</span>
-                    <input defaultValue={0} name={`minPrice`} onMouseUp={e => filterByPrice(e)} type="range" min="0" max="5000"/>
+                    <input defaultValue={0} name={`minPrice`} onMouseUp={e => filterByPrice(e)} type="range" min="0"
+                           max="5000"/>
                     <span>${price.minPrice}</span>
                 </div>
 
                 <div className="price-range">
                     <span>$0</span>
-                    <input defaultValue={5000} name={`maxPrice`} onMouseUp={e => filterByPrice(e)} type="range" min="0" max="5000"/>
+                    <input defaultValue={5000} name={`maxPrice`} onMouseUp={e => filterByPrice(e)} type="range" min="0"
+                           max="5000"/>
                     <span>${price.maxPrice}</span>
                 </div>
             </div>
 
             <div className="filter-section">
-                <h3>Brand</h3>
-                <div>
-                    <input type="checkbox" id="poliform"/>
-                    <label htmlFor="poliform">Poliform</label>
-                </div>
-                <div>
-                    <input type="checkbox" id="roche-bobois"/>
-                    <label htmlFor="roche-bobois">Roche Bobois</label>
-                </div>
-                <div>
-                    <input type="checkbox" id="edra"/>
-                    <label htmlFor="edra">Edra</label>
-                </div>
-                <div>
-                    <input type="checkbox" id="kartell"/>
-                    <label htmlFor="kartell">Kartell</label>
-                </div>
+                <h3>Brands</h3>
+                {
+                    [
+                        "NIKE",
+                        "ADIDAS",
+                        "ZARA",
+                        "HM",
+                        "APPLE",
+                        "SAMSUNG",
+                        "DELL",
+                        "LG"
+                    ].map(b => {
+                        return <div>
+                            <input name={`brands`} onChange={e => othersHandler(e)} type="checkbox" value={b} id="poliform"/>
+                            <label htmlFor="poliform">{b}</label>
+                        </div>
+                    })
+                }
+            </div>
+
+            <div className="filter-section">
+                <h3>Sizes</h3>
+                {
+                    [
+                        "XS",
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                    ].map(s => {
+                        return <div>
+                            <input name={`sizes`} onClick={e => othersHandler(e)} type="checkbox" value={s}/>
+                            <label htmlFor="poliform">{s}</label>
+                        </div>
+                    })
+                }
+            </div>
+
+            <div className="filter-section">
+                <h3>Colors</h3>
+                {
+                    [
+                        "RED",
+                        "BLUE",
+                        "BLACK",
+                        "WHITE",
+                        "GREEN",
+                        "YELLOW",
+                        "PINK"
+                    ].map(c => {
+                        return <div>
+                            <input name={`colors`} onChange={e => othersHandler(e)} type="checkbox" value={c}/>
+                            <label htmlFor="poliform">{c}</label>
+                        </div>
+                    })
+                }
             </div>
 
         </div>

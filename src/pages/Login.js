@@ -90,6 +90,7 @@ const Login = () => {
     return <div className="container-fluid">
         <div className="form-container">
             <div className="login-form box">
+                <h5 className={`text-center`} style={{color: 'green'}}>Welcome to G1 Shop</h5>
                 <div className="mb-3">
                     <label htmlFor="user_email" className="form-label">Email</label>
                     <input

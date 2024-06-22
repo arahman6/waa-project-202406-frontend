@@ -1,0 +1,18 @@
+.app_image_upload_container {
+    width: 100%;
+}
+.app_image_upload_container .imageContainer {
+    width: 100%;
+    margin: 15px 0;
+}
+
+.imageContainer img {
+    width: 200px;
+}
+
+.image_close_icon {
+    position: absolute;
+    margin-top: -10px;
+    cursor: pointer;
+    margin-left: 5px;
+}

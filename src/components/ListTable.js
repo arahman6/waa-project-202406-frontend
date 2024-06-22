@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import moment from "moment";
 
 const ListTable = ({cols = [], data, perPage = 10, editHandler, deleteHandler}) => {
     const [currentPage, setCurrentPage] = useState(1);
@@ -36,8 +37,14 @@ const ListTable = ({cols = [], data, perPage = 10, editHandler, deleteHandler}) 
                         <tr key={item.id}>
                             {
                                 cols.map(col => {
+                                    if (col == "price") {
+                                        return <td>{`$`+item[col]}</td>
+                                    }
                                     if (col == "subCategory") {
                                         return <td>{item[col]?.name}</td>
+                                    }
+                                    if (col == "orderDate") {
+                                        return <td>{moment(item[col]).format('MM/DD/YYYY')}</td>
                                     }
                                     if (col == "category") {
                                         return <td>{item[col]?.category?.name}</td>

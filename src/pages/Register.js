@@ -119,12 +119,13 @@ const Register = () => {
 
         axios.post("/users", regData)
             .then(res => {
+                console.log(res.data)
                 navigate("/login");
                 toast.success("Successfully registered, please login!");
             })
             .catch(err => {
                 console.log(err);
-                setErrors({...errors, message: "Something went wrong, try again!"})
+                setErrors({...errors, message: "Password must be at least 8 characters long"})
             })
 
 

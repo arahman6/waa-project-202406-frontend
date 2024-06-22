@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './MyCart.css';
 import Header from "../../components/header/Header";
 import {Link} from "react-router-dom";
 import {useSelector} from "react-redux";
 import CartItem from "../../components/cart/CartItem";
 import CartSummery from "../../components/cart/CartSummery";
+import axios from "../../configs/axios";
 
 const MyCart = () => {
 

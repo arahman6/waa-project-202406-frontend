@@ -1,5 +1,5 @@
 import Header from "../../components/header/Header";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import "./Checkout.css";
 import {Link, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
@@ -12,34 +12,24 @@ const Checkout = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const cartItems = useSelector(state => state.cart)
+
+    const authUserId = useSelector(state => state?.auth?.user?.id)
+
+    const [orderData, setOrderData] = useState([])
+
+    useEffect( ()=> {
+        axios.get(`buyer/${authUserId}/cart`)
+            .then(res => setOrderData(res?.data?.cartItems))
+            .catch( err=> console.log(err))
+    }, []);
+
     const placeOrderHandler = () => {
         if (!authUser?.isAuthenticated) {
             navigate("/login")
             return false;
         }
 
-        let orderData = []
-
-        cartItems.map( item => {
-            let tmp = {};
-            tmp.quantity = item.quantity;
-            tmp.price = item.quantity;
-            tmp.product = {
-                id: item.productID,
-                name: item.name,
-                description: item.description,
-                price : item.price,
-                image_url : item.imageUrl,
-                stock_quantity : item.stock_quantity,
-                purchased : true,
-                user: {
-                    id: authUser?.user?.id
-                }
-            }
-
-            orderData.push(tmp);
-
-        } );
+        let orderData = [];
 
         axios.post(`buyer/${authUser?.user?.id}/cart/makeOrder`, orderData)
             .then( res => {

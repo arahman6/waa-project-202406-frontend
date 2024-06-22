@@ -3,6 +3,7 @@ import ListTable from "../../components/ListTable";
 import axios from "../../configs/axios";
 import {useDispatch, useSelector} from "react-redux";
 import {setCategory} from "../../features/categorySlice";
+import ImageUploader from "../../components/ImageUploader/ImageUploader";
 
 const AddProduct = () => {
 
@@ -99,7 +100,7 @@ const AddProduct = () => {
 
     return <div className="row">
         <div className="col-12">
-            <form className="styled-form" onSubmit={handleSubmit}>
+            <form className="styled-form">
                 <div className="form-group mb-3">
                     <label htmlFor="name">Name:</label>
                     <input
@@ -139,15 +140,21 @@ const AddProduct = () => {
                 </div>
 
                 <div className="form-group mb-3">
-                    <label htmlFor="image">Image:</label>
-                    <input
-                        type="file"
-                        id="image"
-                        className={`form-control ${errors?.field === "image" && " input_error"}`}
-                        name="image"
-                        onChange={handleChange}
+                    <div>
+                        <label htmlFor="price">Upload Image</label>
+                    </div>
+                    {/*<label htmlFor="image">Image:</label>*/}
+                    {/*<input*/}
+                    {/*    type="file"*/}
+                    {/*    id="image"*/}
+                    {/*    className={`form-control ${errors?.field === "image" && " input_error"}`}*/}
+                    {/*    name="image"*/}
+                    {/*    onChange={handleChange}*/}
 
-                    />
+                    {/*/>*/}
+
+                    <ImageUploader />
+
                 </div>
 
                 <div className="form-group mb-3">

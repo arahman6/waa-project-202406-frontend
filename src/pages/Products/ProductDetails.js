@@ -6,6 +6,7 @@ import {setProduct} from "../../features/productsSlice";
 import StarRating from "../../components/products/StarRating";
 import {decrementQuantity, incrementQuantity, setCart} from "../../features/cartSlice";
 import {toast} from "react-toastify";
+import axios from "../../configs/axios";
 
 const ProductDetails = () => {
     const {id} = useParams();
@@ -13,6 +14,8 @@ const ProductDetails = () => {
     const products = useSelector(state => state?.products)
     const cart = useSelector(state => state?.cart || [])
     const [cartQuantity, setCartQuantity] = useState(1);
+    const isAuthenticated = useSelector(state => state?.auth?.isAuthenticated);
+    const authUserId = useSelector(state => state?.auth?.user?.id);
 
     const [product, setProduct] = useState(null);
     useEffect(() => {
@@ -21,20 +24,41 @@ const ProductDetails = () => {
 
     const addToCart = () => {
         let cartItem = {
-            productID: product.id,
-            name: product.name,
-            category: product.category,
-            price: product.price,
-            quantity: cartQuantity,
-            imageUrl: product.imageUrl,
-            stock_quantity: product.stock_quantity
+            product: {
+                imageUrl: product.imageUrl,
+                stock_quantity: product.stock_quantity,
+                id: product.id,
+                name: product.name,
+                description: "Latest Apple iPhone",
+                price: product.price,
+                purchased: false
+            },
+            quantity: cartQuantity
+
         }
 
         // If the product is exist, then only update the quantity
         if (cart.find(item => item.productID == product.id)) {
             dispatch(incrementQuantity(product.id));
         } else {
-            dispatch(setCart(cartItem));
+            if (isAuthenticated) {
+                axios.post(`buyer/${authUserId}/addToCart`, cartItem)
+                    .then(res => {
+                        let cartItem = {
+                            productID: product.id,
+                            name: product.name,
+                            category: product.category,
+                            price: product.price,
+                            quantity: cartQuantity,
+                            imageUrl: product.imageUrl,
+                            stock_quantity: product.stock_quantity
+                        }
+                        dispatch(setCart(cartItem))
+                    })
+            } else {
+                dispatch(setCart(cartItem));
+            }
+
         }
 
         toast.success("Added to cart")
